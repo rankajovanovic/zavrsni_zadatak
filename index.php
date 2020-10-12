@@ -42,10 +42,6 @@
     <div class="row">
 
         <div class="col-sm-8 blog-main">
-            
-
-
-
             <?php include('posts.php') ?>
         </div><!-- /.blog-main -->
 

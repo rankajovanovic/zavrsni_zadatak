@@ -21,7 +21,10 @@ h6,
     color: #b34848;
 }
 
-.blog-post-title:hover {
+.h2:hover {
     text-decoration: underline;
     color: #b34848
+}
+.comments ul {
+    list-style: none;
 }

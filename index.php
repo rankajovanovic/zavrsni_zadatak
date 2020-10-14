@@ -46,9 +46,9 @@
         </div><!-- /.blog-main -->
 
 
-        <?php include('sidebar.php') ?>
-    </div><!-- /.row -->
 
+    </div><!-- /.row -->
+    <?php include('sidebar.php') ?>
 </main><!-- /.container -->
 
 <?php include('footer.php')?>

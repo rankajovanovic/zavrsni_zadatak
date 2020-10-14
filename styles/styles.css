@@ -28,3 +28,10 @@ h6,
 .comments ul {
     list-style: none;
 }
+.form {
+    display: block;
+    flex-direction: row;
+}
+form {
+    flex-direction: row;
+}

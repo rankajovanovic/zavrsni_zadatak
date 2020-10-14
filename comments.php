@@ -2,7 +2,7 @@
     <h3>Comments:</h3><br>
                    
     <?php
-    $sqlComments ="SELECT * FROM comments WHERE comments.post_id = {$_GET['post_id']}";
+    $sqlComments ="SELECT * FROM comments WHERE post_id = {$_GET['post_id']}";
     $statement = $connection->prepare($sqlComments);
 
     $statement->execute();
@@ -12,9 +12,10 @@
 
     <ul>
         <?php foreach ($comments as $comment) {?>
+        
         <li>
-            <p>posted by: <strong><?php echo $comment['author']?></strong></p>
             <p><?php echo $comment['text'] ?> </p>
+            <p>posted by: <strong><?php echo $comment['author']?></strong></p>
         </li>
         <hr>
         <?php } ?>

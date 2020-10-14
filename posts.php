@@ -1,12 +1,11 @@
 <?php 
-    $sql = "SELECT posts.id, posts.title, posts.created_at, posts.body, posts.author  FROM posts ORDER BY posts.created_at DESC LIMIT 3";
+    $sql = "SELECT id, title, created_at, body, author  FROM posts ORDER BY created_at DESC LIMIT 3";
     $statement = $connection->prepare($sql);
 
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_ASSOC);
     $posts = $statement->fetchAll();
 ?>
-
 <?php
     foreach ($posts as $post) {
 ?>

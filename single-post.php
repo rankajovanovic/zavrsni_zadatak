@@ -44,7 +44,7 @@
         <div class="col-sm-8 blog-main">
         <?php
             if (isset($_GET['post_id'])) {  
-                $sql = "SELECT posts.id, posts.title, posts.created_at, posts.body, posts.author FROM posts WHERE posts.id = {$_GET['post_id']}";
+                $sql = "SELECT id, title, created_at, body, author FROM posts WHERE id = {$_GET['post_id']}";
 
                 $statement = $connection->prepare($sql);
                 $statement->execute();

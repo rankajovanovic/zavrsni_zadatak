@@ -71,7 +71,7 @@
                                     ':id' =>  $_GET['id']
                                 ));
 
-                                header("Location: /zavrsni_zadatak-master/index.php?action=updated");
+                                header("Location: index.php?action=updated");
                                 exit;
                             
                             } catch(PDOException $e){
@@ -107,7 +107,7 @@
                 <label class="form-check-label form-text" for="">Content:</label>
                 <textarea class="form-text form-control"  name="body" id="body" cols="80" rows="15"><?php echo $post['body'];?></textarea>
                
-                <button class="btn btn-success mt-3" name="submit" id="submit" type= "submit">Save</button>
+                <button class="btn btn-success mt-3 mb-3" name="submit" id="submit" type= "submit">Save</button>
             </form>
 
         </div><!-- /.blog-main -->

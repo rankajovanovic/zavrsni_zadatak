@@ -60,14 +60,14 @@
                         if(!isset($error)){ 
                             try{
                                 $sql = "INSERT INTO posts (title, body, author) VALUES (:title, :body, :author)";
-                                $stmt = $pdo->prepare($sql);
+                                $stmt = $connection->prepare($sql);
                             
                                 $stmt->bindParam(':title', $_POST['title']);
                                 $stmt->bindParam(':body', $_POST['body']);
                                 $stmt->bindParam(':author', $_POST['author']);
                                 
                                 $stmt->execute();
-                                header("Location: /zavrsni_zadatak-master/index.php?action=added");
+                                header("Location: index.php?action=added");
                                 exit;
                             
                             } catch(PDOException $e){
@@ -91,7 +91,7 @@
                 <label class="form-check-label form-text" for="">Content:</label>
                 <textarea class="form-text form-control"  name="body" id="body" cols="70" rows="15" <?php if(isset($error)){ echo $_POST['content'];}?>></textarea>
                
-                <button class="btn btn-success mt-3" name="submit" id="submit" type= "submit">Save</button>
+                <button class="btn btn-success mt-3 mb-3" name="submit" id="submit" type= "submit">Save</button>
             </form>
 
         </div><!-- /.blog-main -->

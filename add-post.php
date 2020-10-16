@@ -10,7 +10,7 @@ try{
     $stmt->bindParam(':author', $_POST['author']);
     
     $stmt->execute();
-    header("Location: /zavrsni_zadatak-master/index.php");
+    header("Location: index.php");
 
 } catch(PDOException $e){
     die("ERROR: Could not able to execute $sql. " . $e->getMessage());

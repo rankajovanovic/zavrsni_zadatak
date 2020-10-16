@@ -7,6 +7,7 @@
                 <a class="nav-link" href="#">Press</a>
                 <a class="nav-link" href="#">New hires</a>
                 <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="admin.php">Admin</a>
             </nav>
         </div>
     </div>

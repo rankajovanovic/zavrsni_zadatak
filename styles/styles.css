@@ -29,9 +29,10 @@ h6,
     list-style: none;
 }
 .form {
-    display: block;
-    flex-direction: row;
+    display: flex;
+   width: 80%;;
 }
-form {
-    flex-direction: row;
+
+.comments {
+    
 }

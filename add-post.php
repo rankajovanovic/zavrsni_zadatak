@@ -1,20 +1,7 @@
 <?php
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "vivify";
-    $dbname = "blog";
+include('db.php');
 
 try{
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e){
-    die("ERROR: Could not connect. " . $e->getMessage());
-}
- 
-
-try{
-   
     $sql = "INSERT INTO posts (title, body, author) VALUES (:title, :body, :author)";
     $stmt = $pdo->prepare($sql);
 
@@ -23,7 +10,8 @@ try{
     $stmt->bindParam(':author', $_POST['author']);
     
     $stmt->execute();
-    echo "Records inserted successfully.";
+    header("Location: /zavrsni_zadatak-master/index.php");
+
 } catch(PDOException $e){
     die("ERROR: Could not able to execute $sql. " . $e->getMessage());
 }

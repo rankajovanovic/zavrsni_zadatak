@@ -40,7 +40,8 @@
         <div class="col-sm-8 blog-main form-row ">
             
             <form action="" method="post">    
-                <h2 class="pb-4 text-center">Add new post:</h2>
+                <h2 class="pb-4 text-center">Edit post:</h2>
+
                 <?php
                     if(isset($_POST['submit'])){
                         $_POST = array_map( 'stripslashes', $_POST );
@@ -59,37 +60,52 @@
                         }
                         if(!isset($error)){ 
                             try{
-                                $sql = "INSERT INTO posts (title, body, author) VALUES (:title, :body, :author)";
-                                $stmt = $pdo->prepare($sql);
-                            
-                                $stmt->bindParam(':title', $_POST['title']);
-                                $stmt->bindParam(':body', $_POST['body']);
-                                $stmt->bindParam(':author', $_POST['author']);
-                                
-                                $stmt->execute();
-                                header("Location: /zavrsni_zadatak-master/index.php?action=added");
+                               
+                                $sql = "UPDATE posts SET title = :title, body = :body, author = :author WHERE id = :id";
+                                $stmt = $connection->prepare($sql);
+    
+                                $stmt->execute(array(
+                                    ':title' => $title,
+                                    ':body' => $body,
+                                    ':author' => $author,
+                                    ':id' =>  $_GET['id']
+                                ));
+
+                                header("Location: /zavrsni_zadatak-master/index.php?action=updated");
                                 exit;
                             
                             } catch(PDOException $e){
-                                die("ERROR: Could not able to execute $sql. " . $e->getMessage());
+                                echo $e->getMessage();
                             }
                         }
                     }
+                ?>
+                <?php
                     if(isset($error)){
                         foreach($error as $error){
                             echo '<p class="text-danger">'.$error.'</p>';
                         }
                     }
+
+                    try {
+
+                        $stmt = $connection->prepare('SELECT title, author, body FROM posts WHERE id = :id') ;
+                        $stmt->execute(array(':id' => $_GET['id']));
+                        $post = $stmt->fetch(); 
+            
+                    } catch(PDOException $e) {
+                        echo $e->getMessage();
+                    }
                 ?>
     
                 <label class="form-check-label form-text" for="">Author:</label>
-                <input id="author" class="form-check-inline form-control" name="author" type="text" value='<?php if(isset($error)){ echo $_POST['author'];}?>'>
+                <input id="author" class="form-check-inline form-control" name="author" type="text" value='<?php echo $post['author'];?>'>
 
                 <label class="form-check-label form-text" for="title">Post title:</label>
-                <input id="title" class="form-check-inline form-control"  name="title" type="text" value='<?php if(isset($error)){ echo $_POST['title'];}?>'>
+                <input id="title" class="form-check-inline form-control"  name="title" type="text" value='<?php echo $post['title'];?>'>
 
                 <label class="form-check-label form-text" for="">Content:</label>
-                <textarea class="form-text form-control"  name="body" id="body" cols="70" rows="15" <?php if(isset($error)){ echo $_POST['content'];}?>></textarea>
+                <textarea class="form-text form-control"  name="body" id="body" cols="80" rows="15"><?php echo $post['body'];?></textarea>
                
                 <button class="btn btn-success mt-3" name="submit" id="submit" type= "submit">Save</button>
             </form>

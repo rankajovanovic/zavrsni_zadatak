@@ -1,22 +1,7 @@
-<?php
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "vivify";
-    $dbname = "blog";
-    
-    try {
-        $connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(PDOException $e)
-    {
-        echo $e->getMessage();
-    }
-?>
+<?php include('db.php')?>
 <!doctype html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -32,7 +17,6 @@
     <link href="styles/blog.css" rel="stylesheet">
     <link href="styles/styles.css" rel="stylesheet">
 </head>
-
 <body>
 
 <?php include('header.php')?>
@@ -45,10 +29,9 @@
             <?php include('posts.php') ?>
         </div><!-- /.blog-main -->
 
-
-
+        <?php include('sidebar.php') ?>
     </div><!-- /.row -->
-    <?php include('sidebar.php') ?>
+
 </main><!-- /.container -->
 
 <?php include('footer.php')?>
